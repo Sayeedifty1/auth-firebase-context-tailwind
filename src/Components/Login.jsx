@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../providers/AuthProviders';
 
 const Login = () => {
-    const {signIn} = useContext(AuthContext);
+    const {signIn , googleSignIn} = useContext(AuthContext);
 
     const handleLogin = event => {
         event.preventDefault();
@@ -17,6 +17,16 @@ const Login = () => {
             console.log(loggedUser)
         })
         .catch(error => {
+            console.log(error)
+        })
+    }
+    const SignInWithGoogle = () =>{
+        googleSignIn()
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser)
+        })
+        .catch(error=>{
             console.log(error)
         })
     }
@@ -48,8 +58,10 @@ const Login = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
+                                <button onClick={SignInWithGoogle} className="btn btn-active btn-ghost mt-6">SignIn with Google</button>
                             </div>
                         </form>
+                        
                         <Link to="/register">
                             <button className="btn btn-active btn-link">New to Mastering Auth?? Register Now</button>
                         </Link>
