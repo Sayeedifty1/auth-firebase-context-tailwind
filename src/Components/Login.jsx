@@ -11,7 +11,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password)
-        signIn (email, password)
+        signIn(email, password)
         .then(result => {
             const loggedUser= result.user;
             console.log(loggedUser)
